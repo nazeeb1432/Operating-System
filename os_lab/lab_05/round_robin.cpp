@@ -96,5 +96,12 @@ int main(){
     for(i=0;i<process_num;i++){
         printf("P%d\t%d\t%d\n",process[i].process_id,process[i].turnaround_time,process[i].waiting_time);
     }
+    int turn_sum=0,wait_sum=0;
+    for(int i=0;i<process_num;i++){
+        turn_sum+=process[i].turnaround_time;
+        wait_sum+=process[i].waiting_time;
+    }
+    cout<<"Average turnaround time: "<<(double)turn_sum/process_num<<endl;
+    cout<<"Waiting time: "<<(double)wait_sum/process_num<<endl;
     return 0;
 }

@@ -13,7 +13,7 @@ int num_slices = 0;
 int S;
 sem_t pizza;    
 sem_t deliver;
-sem_t mutex;
+sem_t mutex;//for number of slices
 int deliveryProcess = true;
 
 void *student(void *arg);
@@ -56,7 +56,7 @@ int main(){
 }
 
 void init_sem(){
-    sem_init(&pizza, 0, 0);
+    sem_init(&pizza, 0, 0);//how many slices? counting semaphore
     sem_init(&deliver, 0, 1);
     sem_init(&mutex, 0, 1);
 }
@@ -107,7 +107,7 @@ void *delivery(void *arg){
         sem_wait(&mutex);
         num_slices += S;
         sem_post(&mutex);
-        for(int i = 0; i < S; i++){
+        for(int i = 1; i <=S; i++){
             sem_post(&pizza);
         }
         deliveryProcess = false;
